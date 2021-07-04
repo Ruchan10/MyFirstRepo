@@ -4,3 +4,6 @@ if a in dict:
     print(f'The mark obtained by {a} is {dict[a]}')
 else:
     print('No student found in the database')
+print('Just some extra stuff')
+print(dict['kanchan'])
+
