@@ -5,5 +5,16 @@ if a in dict:
 else:
     print('No student found in the database')
 print('Just some extra stuff')
-print(dict['kanchan'])
 
+dict['python']='71'     # Replaces value stored in the given key(python)
+print(dict['kanchan']) # Prints the value in the given key(kanchan) and returns KeyError if there is no key in dict
+print(dict.get('python')) # Prints the value in the given key(kanchan) and returns None if there is no key in dict
+print(dict.pop('ruby')) # Removes the value of the given key from dict and returns it
+print(dict)
+print(dict.popitem()) # Removes random key:value pair from dict and returns it
+print(dict)
+del dict['swift'] # Deletes the value stored in given key(swift)
+print(dict)
+dict.clear() # Makes the dict empty
+print(dict)
+del dict # Deletes the entire dict
