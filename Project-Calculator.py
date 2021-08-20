@@ -22,6 +22,10 @@ root.config(bg="grey")
 e = Entry(root, width=12, bg="grey", justify=RIGHT, font=('times', 50, 'bold'))
 e.grid(row=0, column=0, columnspan=3, padx=20, pady=20)
 
+def b_del():
+    current_number = e.get()
+    length = len(current_number) - 1
+    e.delete(length, END)
 
 def b_click(number):
     current = e.get()
@@ -114,7 +118,7 @@ frame = LabelFrame(root, width=312, height=272.5, bg="grey")
 frame.grid()
 
 font0 = ("times", 15, 'bold')
-font1 = ("verdana", 15, 'bold')
+font1 = ("verdana", 15,'bold')
 
 # Creating all the required buttons
 b1 = Button(frame, text="1", padx=40, pady=20, command=lambda: b_click(1), bg='black', fg='white', bd=7, font=font0)
@@ -135,6 +139,8 @@ bdiv = Button(frame, text="/", padx=40, pady=20, command=b_div, bg='black', fg='
 bpwr = Button(frame, text="^", padx=35, pady=20, command=b_pwr, bg='black', fg='orange', bd=7, font=font1)
 bmod = Button(frame, text="mod", padx=20, pady=20, command=b_mod, bg='black', fg='orange', bd=7, font=font1)
 beql = Button(frame, text="=", padx=96, pady=20, command=b_eql, bg='black', fg='orange', bd=7, font=font1)
+bdel = Button(frame, text="=", padx=40, pady=20, command=b_del, bg='black', fg='orange', bd=7, font=font1)
+
 
 # First row
 bcls.grid(row=1, column=0, columnspan=2)
@@ -163,5 +169,7 @@ badd.grid(row=4, column=3)
 bmod.grid(row=5, column=0)
 b0.grid(row=5, column=1)
 beql.grid(row=5, column=2, columnspan=2)
+
+bdel.grid(row=6, column=0)
 
 root.mainloop()
