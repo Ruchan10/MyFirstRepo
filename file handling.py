@@ -38,15 +38,15 @@ print(file0.read())
 file0.close()'''
 
 import pickle
-rk=['speaker','pen']
-file=open('abc0.txt','ab')
-pickle.dump(rk,file)
+rk = ['speaker', 'pen']
+file = open('abc0.txt', 'ab')
+pickle.dump(rk, file)
 file.close()
 
-file=open('abc0.txt','rb')
-s={'key':'shyam','name':'iamironman','age':'50'}
-s0=pickle.load(file)
+file = open('abc0.txt', 'rb')
+s = {'key': 'shyam', 'name': 'iamironman', 'age': '50'}
+s0 = pickle.load(file)
 for key in s0:
-    print(key,':',s0[key])
+    print(key, ':', s0[key])
 file.close()
 
