@@ -1,5 +1,5 @@
 from turtle import Turtle
-Turtle.Screen()
+Turtle.screen()
 
 def tree(plist, l, a, f):
 
