@@ -11,10 +11,35 @@ win.iconbitmap("calculator.ico")
 
 # Creating a  box to display the all the content
 e=Entry(win,font=('arial',20,'bold'),bd=30,insertwidth=4,bg='grey',width=30,borderwidth=20,justify='right')
-e.grid(columnspan=4)
+e.grid(columnspan=5)
 
 # Setting size of the window
-win.geometry("511x490")
+x = 650
+y = 500
+win.geometry(f"{x}x{y}")
+
+file0 = open('abc.txt', 'w')
+file0.write("")
+file0.close()
+
+def b_del():
+    current_number = e.get()
+    length = len(current_number) - 1
+    e.delete(length, END)
+
+
+def show():
+    global x
+    global y
+    file0 = open('abc.txt', 'r+')
+    data_var = file0.read()
+    file0.write('\n')
+    file0.close()
+
+    Label(win, text=data_var,font=("arial",20,'bold'), bg="grey").grid(columnspan=5,rowspan=6)
+    y += 20
+    win.geometry(f"{x}x{y}")
+
 
 # All the required buttons
 def buttonclick(num):
@@ -60,14 +85,44 @@ def btn_div():
 def btn_equal():
    snum=int(e.get())
    e.delete(0,END)
+
+   file0 = open('abc.txt', 'r+')
+   file0.read()
+   file0.write(str(fnum))
+   file0.close()
+
    if math=="mul":
-       e.insert(0,fnum*snum)
+       m = fnum * snum
+       e.insert(0, m)
+       file0 = open('abc.txt', 'r+')
+       file0.read()
+       file0.write(" * " + str(snum) + ' = ' + str(m))
+       file0.close()
+
    elif math == "sub":
-       e.insert(0, fnum - snum)
+       s = fnum - snum
+       e.insert(0, s)
+       file0 = open('abc.txt', 'r+')
+       file0.read()
+       file0.write(" - " + str(snum) + ' = ' + str(s))
+       file0.close()
+
    elif math=="add":
-       e.insert(0,fnum+snum)
+       a = fnum+snum
+       e.insert(0, a)
+       file0 = open('abc.txt', 'r+')
+       file0.read()
+       file0.write(" + " + str(snum) + ' = ' + str(a))
+       file0.close()
+
    elif math=="div":
-       e.insert(0,fnum/snum)
+       d = fnum/snum
+       e.insert(0, d)
+       file0 = open('abc.txt', 'r+')
+       file0.read()
+       file0.write(" / " + str(snum) + ' = ' + str(d))
+       file0.close()
+
 
 # All the required buttons
 btn1=Button(win,text="1",padx=40,pady=20,command=lambda : buttonclick(1),bg='blue',fg='black',bd=7,font=("arial",20,'bold'))
@@ -80,18 +135,24 @@ btn7=Button(win,text="7",padx=40,pady=20,command=lambda : buttonclick(7),bg='blu
 btn8=Button(win,text="8",padx=40,pady=20,command=lambda : buttonclick(8),bg='blue',fg='black',bd=7,font=("arial",20,'bold'))
 btn9=Button(win,text="9",padx=40,pady=20,command=lambda : buttonclick(9),bg='blue',fg='black',bd=7,font=("arial",20,'bold'))
 btn0=Button(win,text="0",padx=40,pady=20,command=lambda : buttonclick(0),bg='blue',fg='black',bd=7,font=("arial",20,'bold'))
-btnequal=Button(win,text="=",padx=37,pady=20,command=btn_equal,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
-btnadd=Button(win,text="+",padx=38,pady=20,command=btn_add,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
-btnsub=Button(win,text="-",padx=41,pady=20,command=btn_sub,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+btnequal=Button(win,text="=",padx=99,pady=19,command=btn_equal,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+btnadd=Button(win,text="+",padx=35,pady=73,command=btn_add,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+btnsub=Button(win,text="-",padx=40,pady=20,command=btn_sub,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
 btndiv=Button(win,text="/",padx=41,pady=20,command=btn_div,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
 btnmul=Button(win,text="*",padx=40,pady=20,command=btn_mul,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
-btncls=Button(win,text="C",padx=37,pady=20,command=btn_cls,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+btncls=Button(win,text="C",padx=37,pady=18,command=btn_cls,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+history_btn = Button(win, text='History',padx=6,pady=21, command=show,bg='grey67',fg='orange',bd=7,font=("arial",19,'bold'))
+bdel = Button(win, text="←", padx=30, pady=18, command=b_del,bg='grey67',fg='orange',bd=7,font=("arial",20,'bold'))
+
+
 
 # First row
 btn7.grid(column=0,row=3)
 btn8.grid(column=1,row=3)
 btn9.grid(column=2,row=3)
-btnadd.grid(column=3,row=3)
+btnadd.grid(column=4,row=4,rowspan=2)
+history_btn.grid(column=1, row=6)
+bdel.grid(column=4, row=3)
 
 # Second row
 btn4.grid(column=0,row=4)
@@ -107,9 +168,9 @@ btndiv.grid(column=3,row=5)
 
 # Fourth row
 btn0.grid(column=0,row=6)
-btncls.grid(column=1,row=6)
+btncls.grid(column=3,row=3)
 btnmul.grid(column=2,row=6)
-btnequal.grid(column=3,row=6)
+btnequal.grid(column=3,row=6, columnspan=2)
 
 # Changing the background color of the window
 win.config(bg="grey")
