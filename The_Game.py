@@ -17,7 +17,6 @@ def start():
     yellow = (255, 255, 102)
     black = (0, 0, 0)
     red = (213, 50, 80)
-    green = (0, 255, 0)
     blue = (50, 153, 213)
 
     # Size of the window
@@ -160,7 +159,7 @@ def destroy():
 
 win = Tk()
 win.title('Select')
-win.iconbitmap('eagle.png')
+win.iconbitmap('r0.ico')
 
 Label(win, bg="black", fg="white", text='Player Name:', font=('times',20)).grid(row=0, column=0)
 
